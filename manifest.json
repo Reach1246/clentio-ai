@@ -1,0 +1,14 @@
+{
+  "name": "Clentio.ai",
+  "short_name": "Clentio",
+  "description": "Building brands too big to ignore for B2B founders and CEOs.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0A2426",
+  "theme_color": "#0A2426",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

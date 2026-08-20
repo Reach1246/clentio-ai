@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Clentio.ai — Building Brands Too BIG to Ignore</title>
+<meta name="description" content="I decode what works on LinkedIn, then architect your authority with it." />
+<meta name="theme-color" content="#0A2426" />
+<link rel="manifest" href="manifest.json" />
+<link rel="icon" href="icons/icon-192.png" />
+<link rel="apple-touch-icon" href="icons/icon-192.png" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#0A2426; --bg-mid:#0F3538; --bg-card:#123B3E;
+    --cyan:#2FD8E8; --cyan-dim:rgba(47,216,232,0.35);
+    --white:#F4FBFB; --muted:#9FC4C4; --muted-dark:#6E9494;
+    --display:'Space Grotesk',sans-serif; --body:'Inter',sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:linear-gradient(180deg,var(--bg-deep),var(--bg-mid));
+    color:var(--white);font-family:var(--body);}
+  a{color:inherit;text-decoration:none;}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;
+    position:sticky;top:0;background:rgba(10,36,38,0.9);backdrop-filter:blur(8px);z-index:40;
+    border-bottom:1px solid var(--cyan-dim);}
+  .logo{font-family:var(--display);font-weight:700;font-size:1.3rem;}
+  .logo span{color:var(--cyan);}
+  .nav-links{display:none;gap:22px;font-size:0.9rem;color:var(--muted);}
+  @media(min-width:720px){.nav-links{display:flex;}}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border-radius:999px;
+    font-weight:500;font-size:0.9rem;cursor:pointer;border:none;font-family:var(--body);}
+  .btn-solid{background:var(--cyan);color:var(--bg-deep);}
+  .btn-outline{border:1px solid var(--cyan-dim);color:var(--white);background:transparent;}
+  .btn-solid:disabled{opacity:0.6;cursor:not-allowed;}
+  header{max-width:800px;margin:0 auto;padding:50px 24px 60px;text-align:center;}
+  .badge{display:inline-block;padding:8px 16px;border-radius:999px;border:1px solid var(--cyan-dim);
+    font-size:0.7rem;text-transform:uppercase;letter-spacing:0.12em;margin:4px;}
+  h1{font-family:var(--display);font-weight:700;font-size:2.4rem;line-height:1.1;margin:24px 0;}
+  h1 span{color:var(--cyan);}
+  h2{font-family:var(--display);font-weight:700;font-size:2rem;margin-bottom:12px;}
+  .lead{color:var(--muted);font-size:1.1rem;max-width:600px;margin:0 auto 30px;}
+  .label{color:var(--cyan);text-transform:uppercase;letter-spacing:0.2em;font-size:0.75rem;margin-bottom:10px;}
+  section{max-width:1050px;margin:0 auto;padding:50px 24px;}
+  .grid{display:grid;gap:20px;}
+  .grid-2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr));}
+  .grid-3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+  .grid-4{grid-template-columns:repeat(auto-fit,minmax(160px,1fr));}
+  .card{background:var(--bg-card);border:1px solid var(--cyan-dim);border-radius:18px;padding:24px;}
+  .card-outline{border:1px solid var(--cyan-dim);border-radius:18px;padding:24px;}
+  .stat-n{font-family:var(--display);color:var(--cyan);font-size:1.8rem;font-weight:700;}
+  .stat-l{color:var(--muted);font-size:0.85rem;margin-top:8px;}
+  .step-num{color:var(--cyan);font-family:var(--display);font-size:1.3rem;font-weight:700;margin-bottom:10px;}
+  .step-title{font-family:var(--display);font-weight:700;font-size:1.05rem;margin-bottom:8px;}
+  .filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;}
+  .filter-btn{padding:8px 18px;border-radius:999px;border:1px solid var(--cyan-dim);
+    background:transparent;color:var(--white);font-size:0.85rem;cursor:pointer;font-family:var(--body);}
+  .filter-btn.active{background:var(--cyan);color:var(--bg-deep);}
+  .post-card{display:block;background:var(--bg-card);border:1px solid var(--cyan-dim);border-radius:18px;
+    padding:22px;transition:border-color 0.15s, transform 0.15s;cursor:pointer;}
+  .post-card:hover{border-color:var(--cyan);transform:translateY(-2px);}
+  .post-pillar{color:var(--cyan);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.2em;margin-bottom:10px;}
+  .post-hook{font-size:0.92rem;line-height:1.5;margin-bottom:16px;color:var(--white);}
+  .post-meta{color:var(--muted-dark);font-size:0.8rem;display:flex;align-items:center;justify-content:space-between;}
+  .hook-title{font-family:var(--display);font-weight:700;color:var(--cyan);margin-bottom:6px;}
+  form{display:grid;gap:12px;}
+  input,textarea,select{padding:14px 16px;border-radius:12px;background:transparent;border:1px solid var(--cyan-dim);
+    color:var(--white);font-size:0.9rem;font-family:var(--body);width:100%;}
+  textarea{resize:vertical;min-height:90px;}
+  select{appearance:none;background-color:var(--bg-card);}
+  select option{background-color:var(--bg-card);color:var(--white);}
+  input::placeholder,textarea::placeholder{color:var(--muted-dark);}
+  .success-box{padding:16px;border-radius:12px;background:rgba(47,216,232,0.1);color:var(--cyan);font-size:0.9rem;}
+  .error-box{color:#ff8a8a;font-size:0.85rem;margin-top:8px;}
+  .bonus-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-bottom:24px;}
+  .bonus-item{display:flex;align-items:center;gap:8px;font-size:0.9rem;}
+  .check{color:var(--cyan);}
+  .center{text-align:center;}
+  .italic-quote{color:var(--muted-dark);font-style:italic;font-size:0.9rem;max-width:480px;margin:50px auto 0;}
+  footer{border-top:1px solid var(--cyan-dim);padding:30px 24px;display:flex;flex-wrap:wrap;
+    align-items:center;justify-content:space-between;gap:16px;}
+  .footer-links{display:flex;gap:20px;color:var(--muted);font-size:0.9rem;}
+  .row-3-form{display:grid;grid-template-columns:1fr;gap:12px;}
+  @media(min-width:640px){
+    h1{font-size:3.4rem;}
+    .row-3-form{grid-template-columns:1fr 1fr auto;}
+  }
+  #install-banner{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--bg-card);
+    border-top:1px solid var(--cyan-dim);padding:14px 20px;align-items:center;justify-content:space-between;
+    gap:12px;z-index:50;}
+  #install-banner.show{display:flex;}
+  .faq-item{border-bottom:1px solid var(--cyan-dim);padding:18px 0;cursor:pointer;}
+  .faq-q{display:flex;justify-content:space-between;align-items:center;font-weight:500;}
+  .faq-a{color:var(--muted);font-size:0.9rem;margin-top:10px;max-height:0;overflow:hidden;transition:max-height 0.2s;}
+  .faq-item.open .faq-a{max-height:200px;}
+  .faq-icon{color:var(--cyan);font-size:1.2rem;transition:transform 0.2s;}
+  .faq-item.open .faq-icon{transform:rotate(45deg);}
+  .writer-output{white-space:pre-wrap;font-size:0.92rem;line-height:1.6;background:rgba(0,0,0,0.2);
+    border-radius:12px;padding:18px;margin-top:16px;border:1px solid var(--cyan-dim);}
+  .spinner{width:16px;height:16px;border:2px solid rgba(10,36,38,0.3);border-top-color:var(--bg-deep);
+    border-radius:50%;animation:spin 0.7s linear infinite;display:inline-block;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Clentio<span>.ai</span></div>
+  <div class="nav-links">
+    <a href="#library">Content</a>
+    <a href="#services">Services</a>
+    <a href="#writer">AI Writer</a>
+    <a href="#faq">FAQ</a>
+  </div>
+  <a href="#audit" class="btn btn-solid">Get a Free Audit</a>
+</nav>
+
+<header>
+  <span class="badge">Top 19% LinkedIn Creator Worldwide by Favikon</span>
+  <h1>Turn Your LinkedIn Into <span>Your Authority.</span></h1>
+  <p class="lead">I decode what works on LinkedIn, architect your positioning around it, and now give you the AI writer that keeps your voice consistent between posts.</p>
+  <div style="margin-bottom:24px;">
+    <span class="badge">3,848+ Followers</span>
+    <span class="badge">130K+ Monthly Impressions</span>
+  </div>
+  <div>
+    <a href="#audit" class="btn btn-solid">Get a Free Profile Audit</a>
+    <a href="#writer" class="btn btn-outline">Try the AI Writer</a>
+  </div>
+</header>
+
+<section class="grid grid-4">
+  <div class="card center"><div class="stat-n">100K+</div><div class="stat-l">Impressions in 90 days</div></div>
+  <div class="card center"><div class="stat-n">340%</div><div class="stat-l">Profile view lift by month 3</div></div>
+  <div class="card center"><div class="stat-n">65%</div><div class="stat-l">Client retention month over month</div></div>
+  <div class="card center"><div class="stat-n">50+</div><div class="stat-l">C-suite clients positioned</div></div>
+</section>
+
+<section>
+  <div class="label center" style="text-align:center;">From Overlooked to Sought After</div>
+  <h2 class="center">Everything you need to stop hiding in plain sight on LinkedIn</h2>
+  <div class="grid grid-4" style="margin-top:30px;">
+    <div class="card-outline">
+      <div class="step-num">01</div>
+      <div class="step-title">Start With What's Holding You Back</div>
+      <p class="stat-l" style="font-size:0.88rem;">Weak content, unclear positioning, or no inbound pipeline. Name it and we fix that first.</p>
+    </div>
+    <div class="card-outline">
+      <div class="step-num">02</div>
+      <div class="step-title">See Exactly What Works</div>
+      <p class="stat-l" style="font-size:0.88rem;">Real hooks, frameworks, and structures pulled from posts that actually performed.</p>
+    </div>
+    <div class="card-outline">
+      <div class="step-num">03</div>
+      <div class="step-title">Apply It Immediately</div>
+      <p class="stat-l" style="font-size:0.88rem;">Every framework here, including the AI writer, gives you something to publish this week.</p>
+    </div>
+    <div class="card-outline">
+      <div class="step-num">04</div>
+      <div class="step-title">Watch It Compound</div>
+      <p class="stat-l" style="font-size:0.88rem;">Track reach, engagement, and inbound as consistent positioning takes hold.</p>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="label">Services</div>
+  <h2>What I do for founders &amp; CEOs</h2>
+  <div class="grid grid-3" style="margin-top:20px;">
+    <div class="card"><div class="step-title" style="font-size:1.05rem;">Done-For-You Executive Ghostwriting</div>
+      <p class="stat-l" style="font-size:0.9rem;margin-bottom:16px;">I write and manage your LinkedIn presence end to end. Your voice shows up consistently without taking your time.</p>
+      <a href="#audit" class="btn btn-outline" style="width:100%;justify-content:center;">Get Details →</a></div>
+    <div class="card"><div class="step-title" style="font-size:1.05rem;">LinkedIn Profile &amp; Funnel Audit</div>
+      <p class="stat-l" style="font-size:0.9rem;margin-bottom:16px;">A full breakdown of your profile, positioning, and content gaps, with a clear action plan to fix them.</p>
+      <a href="#audit" class="btn btn-outline" style="width:100%;justify-content:center;">Get Details →</a></div>
+    <div class="card"><div class="step-title" style="font-size:1.05rem;">Inbound Pipeline Strategy</div>
+      <p class="stat-l" style="font-size:0.9rem;margin-bottom:16px;">I turn your LinkedIn presence into a system that brings qualified conversations to you.</p>
+      <a href="#audit" class="btn btn-outline" style="width:100%;justify-content:center;">Get Details →</a></div>
+  </div>
+</section>
+
+<section style="max-width:800px;">
+  <div class="label">Free Resources</div>
+  <h2>The Complete Founder Visibility Bundle</h2>
+  <p class="stat-l" style="font-size:0.95rem;margin-bottom:24px;">Every free resource I have, in one unlock. Enter your details once to get all of it.</p>
+  <div class="card">
+    <div class="bonus-list">
+      <div class="bonus-item"><span class="check">✓</span> The B2B Pipeline Playbook</div>
+      <div class="bonus-item"><span class="check">✓</span> LinkedIn Profile Optimization Checklist</div>
+      <div class="bonus-item"><span class="check">✓</span> Hook Swipe File (40+ openers)</div>
+      <div class="bonus-item"><span class="check">✓</span> Weekly Content Cadence Template</div>
+      <div class="bonus-item"><span class="check">✓</span> ICP Reference Sheet</div>
+      <div class="bonus-item"><span class="check">✓</span> Discovery Call Script</div>
+    </div>
+    <div id="bundle-form-wrap">
+      <form id="bundle-form" class="row-3-form">
+        <input required id="bundle-name" placeholder="Name" />
+        <input required id="bundle-email" type="email" placeholder="Email" />
+        <button type="submit" class="btn btn-solid">🔒 Unlock Bundle</button>
+      </form>
+      <div class="error-box" id="bundle-error" style="display:none;">Please fill in your name and email.</div>
+    </div>
+  </div>
+</section>
+
+<section id="library">
+  <div class="label">The Library</div>
+  <h2>The proof is in the copy</h2>
+  <p class="stat-l" style="font-size:0.9rem;margin-bottom:20px;">Real posts from my own LinkedIn account. Tap any card to see it live on LinkedIn.</p>
+  <div class="filters" id="filters">
+    <button class="filter-btn active" data-filter="All">All</button>
+    <button class="filter-btn" data-filter="Broad">Broad</button>
+    <button class="filter-btn" data-filter="Narrow">Narrow</button>
+    <button class="filter-btn" data-filter="Niche">Niche</button>
+  </div>
+  <div class="grid grid-3" id="post-grid"></div>
+</section>
+
+<section>
+  <div class="label">The Library · Frameworks</div>
+  <h2>Hook frameworks that stop the scroll</h2>
+  <div class="grid grid-2" style="margin-top:20px;">
+    <div class="card-outline"><div class="hook-title">The Contrarian Flip</div>
+      <p class="stat-l" style="font-size:0.9rem;">How you think you should act vs. how you actually should. Break expectations to create tension.</p></div>
+    <div class="card-outline"><div class="hook-title">The How I Authority Hook</div>
+      <p class="stat-l" style="font-size:0.9rem;">Share your unique experience, not generic advice. Only you can tell your story.</p></div>
+    <div class="card-outline"><div class="hook-title">The Harsh Truth Hook</div>
+      <p class="stat-l" style="font-size:0.9rem;">Open with a bold statement that challenges the status quo.</p></div>
+    <div class="card-outline"><div class="hook-title">The Vulnerability + Transformation Hook</div>
+      <p class="stat-l" style="font-size:0.9rem;">Share a real struggle, then show the breakthrough.</p></div>
+  </div>
+</section>
+
+<section id="writer" style="max-width:750px;">
+  <div class="label">AI Agent</div>
+  <h2>Your LinkedIn Content Writer</h2>
+  <p class="stat-l" style="font-size:0.95rem;margin-bottom:24px;">
+    Give it a topic and a pillar. It writes in your voice: short declarative sentences, "How I" hooks, no em dashes,
+    no hashtags, no rhetorical questions, soft close every time.
+  </p>
+  <div class="card">
+    <form id="writer-form">
+      <select id="writer-pillar">
+        <option value="Broad">Broad (Mon/Wed — wide business & brand-building topics)</option>
+        <option value="Narrow">Narrow (Tue/Thu — LinkedIn tactics and positioning)</option>
+        <option value="Niche">Niche (Sat — direct ICP/service-focused)</option>
+        <option value="Storytell">Storytell (personal story, one scripture verse near the end)</option>
+      </select>
+      <textarea id="writer-topic" placeholder="What's the post about? e.g. 'a founder who posts but gets zero inbound because their profile isn't built to convert'" required></textarea>
+      <button type="submit" class="btn btn-solid" id="writer-submit">Generate Post</button>
+    </form>
+    <div id="writer-error" class="error-box" style="display:none;"></div>
+    <div id="writer-output-wrap"></div>
+  </div>
+</section>
+
+<section id="faq" style="max-width:750px;">
+  <div class="label">FAQ</div>
+  <h2>Questions founders ask before we start</h2>
+  <div id="faq-list"></div>
+</section>
+
+<section class="center" style="max-width:500px;">
+  <div class="label">Newsletter</div>
+  <h2 style="font-size:1.6rem;">Get weekly positioning tips</h2>
+  <p class="stat-l" style="font-size:0.95rem;margin-bottom:20px;">Practical ideas to sharpen your message and attract better opportunities.</p>
+  <div id="newsletter-wrap">
+    <form id="newsletter-form" class="row-3-form">
+      <input required type="email" id="newsletter-email" placeholder="you@company.com" style="grid-column:1/-1;" />
+      <button type="submit" class="btn btn-solid" style="grid-column:1/-1;">Join the List</button>
+    </form>
+  </div>
+</section>
+
+<section id="audit" class="center" style="max-width:500px;">
+  <h2>Ready to own your founder story?</h2>
+  <p class="lead" style="max-width:100%;">Let's talk about positioning you as the founder your industry can't ignore. No pitch, no pressure.</p>
+  <div id="audit-form-wrap">
+    <form id="audit-form">
+      <input required id="audit-name" placeholder="Name" />
+      <input required id="audit-email" type="email" placeholder="Email" />
+      <input id="audit-company" placeholder="Company (optional)" />
+      <button type="submit" class="btn btn-solid" style="width:100%;justify-content:center;">Get Your Free Profile Audit</button>
+    </form>
+  </div>
+  <p class="italic-quote">"The most expensive thing in business isn't a missed deal. It's being invisible when the right people are looking for you."</p>
+</section>
+
+<footer>
+  <div class="logo">Clentio<span>.ai</span></div>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/olalekanasifat" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="#audit">Contact</a>
+  </div>
+</footer>
+
+<div id="install-banner">
+  <span style="font-size:0.9rem;">Install Clentio.ai for quick access</span>
+  <button id="install-btn" class="btn btn-solid">Install</button>
+</div>
+
+<script>
+// ---- Real post content pulled from portfolio, categorized by pillar ----
+const posts = [
+  {pillar:"Broad", hook:"99% of my followers don't know this about me. I started as an HR Manager. Then a freelance book editor. Then social media management. That's before Brew360 clicked.", comments:75},
+  {pillar:"Broad", hook:"Some weeks I still wonder if I'm charging what I'm actually worth. Building a personal brand while finishing an MBA hasn't been a straight line. Some weeks it's 4am readings before content.", comments:38},
+  {pillar:"Broad", hook:"Don't let AI think for you. Use it to write.", comments:29},
+  {pillar:"Narrow", hook:"Reposting other people's content isn't a bad thing. But it's one of the fastest ways to kill your personal brand.", comments:34},
+  {pillar:"Narrow", hook:"Rule No. 1 of writing content on LinkedIn if you have less than 10K followers: most creators don't understand the psychology of reading and eye alignment. I call it Read at a Glance.", comments:41},
+  {pillar:"Narrow", hook:"This one is going to sit with some of you. I just finished optimizing my entire LinkedIn profile last week. New headline. New About. New Featured. New banner. Everything rebuilt.", comments:33},
+  {pillar:"Niche", hook:"Most ghostwriters write for you. I disappear into you. While you were speaking, I was already publishing.", comments:45},
+  {pillar:"Niche", hook:"How I got my client's aha moment that made me $1,500. It was not the proposal. It was not the price. It was a single Google Doc.", comments:29},
+  {pillar:"Niche", hook:"People have been sliding into my DMs asking one question: Lekan, how do I make my LinkedIn profile actually work for me? Not one. Not five. A lot.", comments:26},
+];
+
+const LINKEDIN_URL = "https://www.linkedin.com/in/olalekanasifat";
+
+function renderPosts(filter){
+  const grid = document.getElementById('post-grid');
+  grid.innerHTML = '';
+  const list = filter === 'All' ? posts : posts.filter(p => p.pillar === filter);
+  list.forEach(p => {
+    const a = document.createElement('a');
+    a.href = LINKEDIN_URL;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.className = 'post-card';
+    a.innerHTML = `<div class="post-pillar">${p.pillar}</div>
+      <div class="post-hook">${p.hook}</div>
+      <div class="post-meta"><span>💬 ${p.comments} comments</span><span>View on LinkedIn →</span></div>`;
+    grid.appendChild(a);
+  });
+}
+renderPosts('All');
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderPosts(btn.dataset.filter);
+  });
+});
+
+// ---- FAQ accordion ----
+const faqs = [
+  {q:"Can I start even if I have a small following?", a:"Yes. The system is built to work from zero. Positioning and consistency matter more than starting follower count."},
+  {q:"How much time will this take from me each week?", a:"For done-for-you ghostwriting, usually under 30 minutes a week: a short voice note or async input from you, I handle the rest."},
+  {q:"Will this work in my industry?", a:"The framework adapts to any B2B space. What changes is the angle and proof points, not the underlying system."},
+  {q:"What happens on the free profile audit call?", a:"I review your current profile and content, show you the three biggest gaps, and give you a clear next step. No pitch required to get value from it."},
+  {q:"How is this different from a LinkedIn course?", a:"A course teaches you to do it yourself over weeks. Done-for-you ghostwriting gets your presence built and running while you stay focused on your business."}
+];
+const faqList = document.getElementById('faq-list');
+faqs.forEach((f, i) => {
+  const div = document.createElement('div');
+  div.className = 'faq-item';
+  div.innerHTML = `<div class="faq-q">${f.q}<span class="faq-icon">+</span></div><div class="faq-a">${f.a}</div>`;
+  div.addEventListener('click', () => div.classList.toggle('open'));
+  faqList.appendChild(div);
+});
+
+// ---- Lead storage (local device storage) ----
+function saveLead(entry){
+  try{
+    const leads = JSON.parse(localStorage.getItem('clentio_leads') || '[]');
+    leads.push({...entry, created_at: new Date().toISOString()});
+    localStorage.setItem('clentio_leads', JSON.stringify(leads));
+    return true;
+  }catch(e){
+    console.error(e);
+    return false;
+  }
+}
+
+document.getElementById('bundle-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('bundle-name').value.trim();
+  const email = document.getElementById('bundle-email').value.trim();
+  const errorBox = document.getElementById('bundle-error');
+  if(!name || !email){ errorBox.style.display = 'block'; return; }
+  errorBox.style.display = 'none';
+  const ok = saveLead({name, email, source:'bundle'});
+  document.getElementById('bundle-form-wrap').innerHTML = ok
+    ? `<div class="success-box">You're in. The bundle links will be sent to ${email}. Check your inbox shortly.</div>`
+    : `<div class="error-box">Something went wrong. Try again.</div>`;
+});
+
+document.getElementById('newsletter-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  const email = document.getElementById('newsletter-email').value.trim();
+  if(!email) return;
+  const ok = saveLead({email, source:'newsletter'});
+  document.getElementById('newsletter-wrap').innerHTML = ok
+    ? `<div class="success-box">You're on the list.</div>`
+    : `<div class="error-box">Something went wrong. Try again.</div>`;
+});
+
+document.getElementById('audit-form').addEventListener('submit', function(e){
+  e.preventDefault();
+  const name = document.getElementById('audit-name').value.trim();
+  const email = document.getElementById('audit-email').value.trim();
+  const company = document.getElementById('audit-company').value.trim();
+  if(!name || !email) return;
+  const ok = saveLead({name, email, company, source:'profile_audit'});
+  document.getElementById('audit-form-wrap').innerHTML = ok
+    ? `<div class="success-box">Got it. I'll reach out within 48 hours.</div>`
+    : `<div class="error-box">Something went wrong. Try again.</div>`;
+});
+
+// ---- AI LinkedIn Writer agent ----
+// Calls our own backend at /api/generate, which holds the Anthropic API key server-side.
+document.getElementById('writer-form').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const pillar = document.getElementById('writer-pillar').value;
+  const topic = document.getElementById('writer-topic').value.trim();
+  const errorBox = document.getElementById('writer-error');
+  const outputWrap = document.getElementById('writer-output-wrap');
+  const submitBtn = document.getElementById('writer-submit');
+  errorBox.style.display = 'none';
+  if(!topic) return;
+
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<span class="spinner"></span> Writing...';
+  outputWrap.innerHTML = '';
+
+  try{
+    const response = await fetch("/api/generate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ pillar, topic })
+    });
+    const data = await response.json();
+    if(!response.ok) throw new Error(data.error || ("Request failed: " + response.status));
+    if(!data.text) throw new Error("Empty response");
+
+    outputWrap.innerHTML = `<div class="writer-output" id="writer-text"></div>
+      <button type="button" class="btn btn-outline" id="copy-btn" style="margin-top:12px;">Copy Post</button>`;
+    document.getElementById('writer-text').textContent = data.text;
+    document.getElementById('copy-btn').addEventListener('click', () => {
+      navigator.clipboard.writeText(data.text);
+      document.getElementById('copy-btn').textContent = "Copied";
+      setTimeout(() => { document.getElementById('copy-btn').textContent = "Copy Post"; }, 1500);
+    });
+  }catch(err){
+    console.error(err);
+    errorBox.style.display = 'block';
+    errorBox.textContent = err.message && err.message.includes("Failed to fetch")
+      ? "Couldn't reach the backend. If you're running this locally, the /api function needs a live deployment (Vercel dev or a live URL) to work."
+      : err.message || "Something went wrong generating the post. Try again.";
+  }finally{
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Generate Post";
+  }
+});
+
+// ---- Smooth scroll for nav anchors ----
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', function(e){
+    const target = document.querySelector(this.getAttribute('href'));
+    if(target){
+      e.preventDefault();
+      target.scrollIntoView({behavior:'smooth'});
+    }
+  });
+});
+
+// ---- PWA install prompt ----
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  document.getElementById('install-banner').classList.add('show');
+});
+document.getElementById('install-btn').addEventListener('click', async () => {
+  if(!deferredPrompt) return;
+  deferredPrompt.prompt();
+  await deferredPrompt.userChoice;
+  deferredPrompt = null;
+  document.getElementById('install-banner').classList.remove('show');
+});
+window.addEventListener('appinstalled', () => {
+  document.getElementById('install-banner').classList.remove('show');
+});
+
+// ---- Register service worker ----
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js').catch(err => console.error('SW failed', err));
+  });
+}
+</script>
+</body>
+</html>
